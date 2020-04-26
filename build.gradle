@@ -14,8 +14,8 @@ repositories {
 }
 
 dependencies {
-    ['boofcv-core','boofcv-swing','boofcv-ffmpeg','boofcv-kotlin','boofcv-WebcamCapture'].each
-            { String a -> compile group: 'org.boofcv', name: a, version: '0.36-SNAPSHOT' }
+    ['boofcv-core','boofcv-swing','boofcv-ffmpeg','boofcv-WebcamCapture'].each
+            { String a -> compile group: 'org.boofcv', name: a, version: '0.35' }
     api group: 'junit', name: 'junit', version: '4.12'
 
     compile 'com.github.sarxos:webcam-capture-driver-raspberrypi:0.3.13-SNAPSHOT'
@@ -37,4 +37,42 @@ compileTestKotlin {
 wrapper {
     distributionType = Wrapper.DistributionType.BIN
     gradleVersion = '6.3'
+}
+
+task scanqrJar(type: Jar, dependsOn: ':build' ) {
+
+    manifest {
+        attributes 'Implementation-Title': 'RPI',
+                'Implementation-Version': version,
+                'Main-Class': 'WebcamScanQR'
+    }
+
+    outputs.upToDateWhen { false }
+
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } } {
+        exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'
+    } with jar
+
+    doLast {
+        archivePath.renameTo(file('scanqr.jar'))
+    }
+}
+
+task showJar(type: Jar, dependsOn: ':build' ) {
+
+    manifest {
+        attributes 'Implementation-Title': 'RPI',
+                'Implementation-Version': version,
+                'Main-Class': 'ShowWebcamInWindow'
+    }
+
+    outputs.upToDateWhen { false }
+
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } } {
+        exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'
+    } with jar
+
+    doLast {
+        archivePath.renameTo(file('show.jar'))
+    }
 }
