@@ -2,12 +2,12 @@ import boofcv.gui.image.ImagePanel;
 import boofcv.gui.image.ShowImages;
 import boofcv.io.webcamcapture.UtilWebcamCapture;
 import com.github.sarxos.webcam.Webcam;
-import com.github.sarxos.webcam.ds.raspberrypi.RaspiYUVDriver;
+import com.github.sarxos.webcam.ds.raspberrypi.RaspividDriver;
 
 public class ShowWebcamInWindow {
     // This is required for running on a Raspberry PI
     static {
-        Webcam.setDriver(new RaspiYUVDriver());
+        Webcam.setDriver(new RaspividDriver());
     }
 
     public static void main(String[] args) {
