@@ -10,6 +10,7 @@ repositories {
     mavenCentral()
     mavenLocal()
     maven { url = "https://oss.sonatype.org/content/repositories/snapshots/"}
+    maven { url = "http://maven.ecs.soton.ac.uk/content/repositories/thirdparty/"}
 
 }
 
@@ -19,6 +20,9 @@ dependencies {
     api group: 'junit', name: 'junit', version: '4.12'
 
     compile 'com.github.sarxos:webcam-capture-driver-raspberrypi:0.3.13-SNAPSHOT'
+
+    compile 'com.nativelibs4java:bridj:0.7-20140918-2'
+    compile 'com.github.sarxos:webcam-capture-driver-openimaj:0.3.12'
 }
 
 java {

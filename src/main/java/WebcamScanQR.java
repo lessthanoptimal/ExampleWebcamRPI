@@ -5,7 +5,7 @@ import boofcv.io.image.ConvertBufferedImage;
 import boofcv.io.webcamcapture.UtilWebcamCapture;
 import boofcv.struct.image.GrayU8;
 import com.github.sarxos.webcam.Webcam;
-import com.github.sarxos.webcam.ds.raspberrypi.RaspividDriver;
+import com.github.sarxos.webcam.ds.openimaj.OpenImajDriver;
 
 import java.awt.image.BufferedImage;
 import java.util.List;
@@ -13,9 +13,12 @@ import java.util.List;
 
 public class WebcamScanQR {
 
-    // This is required for running on a Raspberry PI
+
     static {
-        Webcam.setDriver(new RaspividDriver());
+        // Slower driver for RPI only that give me about 10 Hz
+        // Webcam.setDriver(new RaspividDriver());
+        // Provides 30 FPS on RPI
+        Webcam.setDriver(new OpenImajDriver());
     }
 
     public static void main(String[] args) {
