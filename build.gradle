@@ -15,7 +15,7 @@ repositories {
 
 dependencies {
     ['boofcv-core','boofcv-swing','boofcv-ffmpeg','boofcv-WebcamCapture'].each
-            { String a -> compile group: 'org.boofcv', name: a, version: '0.35' }
+            { String a -> compile group: 'org.boofcv', name: a, version: '0.36' }
     api group: 'junit', name: 'junit', version: '4.12'
 
     compile 'com.github.sarxos:webcam-capture-driver-raspberrypi:0.3.13-SNAPSHOT'
